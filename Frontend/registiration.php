@@ -4,6 +4,23 @@ ini_set('display_errors', 1);
 
 include "../Bakcend/Models/models.php";
 
+if (isset($_POST['viloyat_id'])) {
+    $viloyat_id = $_POST['viloyat_id'];
+    $tumanlar = Model::get_tuman_by_viloyat($viloyat_id);
+    
+    if ($tumanlar) {
+        foreach ($tumanlar as $tuman) {
+            echo '<option value="' . $tuman['id'] . '">' . htmlspecialchars($tuman['name']) . '</option>';
+        }
+    } else {
+        echo '<option value="">Tumanlar mavjud emas</option>';
+    }
+} else {
+    echo '<option value="">Tumanni tanlang</option>';
+}
+
+$error = '';
+
 $viloyatlar = Model::get_viloyat();
 
 $selectedViloyat = isset($_POST['viloyat']) ? $_POST['viloyat'] : '';
@@ -14,7 +31,6 @@ if ($selectedViloyat) {
     $tumanlar = Model::get_tuman_by_viloyat($selectedViloyat);
 }
 
-$error = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $surname = $_POST['surname'];
@@ -38,8 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Patient</title>
     <link rel="stylesheet" href="style2.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
 </head>
 <body>
     <main class="form-container">
@@ -55,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php if ($error): ?>
             <p class="error"><?= htmlspecialchars($error); ?></p>
         <?php endif; ?>
-        <form action="" method="POST" class="register-form">
+        <form id="register-form" action="" method="POST" class="register-form">
             <!-- Name Input -->
             <div class="form-group">
                 <label for="name">Ism:</label>
@@ -81,32 +98,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <!-- Viloyat Dropdown -->
-            <div class="form-group">
-                <label for="viloyat">Viloyat:</label>
-                <select id="viloyat" name="viloyat" onchange="this.form.submit()" required>
-                    <option value="">Viloyatni tanlang</option>
-                    <?php foreach ($viloyatlar as $viloyat): ?>
-                        <option value="<?= $viloyat['id'] ?>" <?= $viloyat['id'] == $selectedViloyat ? 'selected' : '' ?>>
-                            <?= htmlspecialchars($viloyat['name']) ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+<!-- Viloyat Dropdown -->
+<div class="form-group">
+    <label for="viloyat">Viloyat:</label>
+    <select id="viloyat" name="viloyat" required onchange="this.form.submit()">
+        <option value="">Viloyatni tanlang</option>
+        <?php foreach ($viloyatlar as $viloyat): ?>
+            <option value="<?= $viloyat['id'] ?>" <?= $viloyat['id'] == $selectedViloyat ? 'selected' : '' ?>>
+                <?= htmlspecialchars($viloyat['name']) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
 
             <!-- Tuman Dropdown -->
-            <div class="form-group">
-                <label for="tuman">Tuman:</label>
-                <select id="tuman" name="tuman" required>
-                    <option value="">Tumanni tanlang</option>
-                    <?php if ($selectedViloyat): ?>
-                        <?php foreach ($tumanlar as $tuman): ?>
-                            <option value="<?= $tuman['id'] ?>" <?= $tuman['id'] == $selectedTuman ? 'selected' : '' ?>>
-                                <?= htmlspecialchars($tuman['name']) ?>
-                            </option>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                </select>
-            </div>
+<!-- Tuman Dropdown -->
+<div class="form-group">
+    <label for="tuman">Tuman:</label>
+    <select id="tuman" name="tuman" required>
+        <option value="">Tumanni tanlang</option>
+        <?php if (!empty($tumanlar)): ?>
+            <?php foreach ($tumanlar as $tuman): ?>
+                <option value="<?= $tuman['id'] ?>" <?= $tuman['id'] == $selectedTuman ? 'selected' : '' ?>>
+                    <?= htmlspecialchars($tuman['name']) ?>
+                </option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </select>
+</div>
+
 
             <!-- Password Input -->
             <div class="form-group">
@@ -118,5 +139,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn">Ro'yxatdan o'tish</button>
         </form>
     </main>
+
+    <script>
+$(document).ready(function() {
+    $('#viloyat').on('change', function() {
+        var viloyatId = $(this).val();
+        if (viloyatId) {
+            $.ajax({
+                type: 'POST',
+                url: 'get_tuman.php',
+                data: { viloyat_id: viloyatId },
+                success: function(response) {
+                    $('#tuman').html(response);
+                },
+                error: function() {
+                    alert('Error loading Tumans. Please try again.');
+                }
+            });
+        } else {
+            $('#tuman').html('<option value="">Tumanni tanlang</option>');
+        }
+    });
+});
+    </script>
 </body>
 </html>

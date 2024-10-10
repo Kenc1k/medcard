@@ -62,7 +62,7 @@ ini_set('display_errors', 1);
         }
 
         .use-service-button:hover {
-            background-color: #0056b3; 
+            background-color: #0056b3;
             color: white;
         }
 
