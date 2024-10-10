@@ -1,66 +1,102 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    max-width: 500px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
 }
 
 h1 {
-    font-size: 24px;
+    font-size: 22px;
+    margin-bottom: 10px;
     color: #333;
-    text-align: center;
 }
 
-h2 {
-    font-size: 20px;
+p {
+    font-size: 16px;
     color: #666;
-    margin-top: 20px;
 }
 
 .subscription-card {
-    background: linear-gradient(to right, #c6f8d1, #a0e7b2);
-    padding: 15px;
-    border-radius: 5px;
-    text-align: center;
+    background: linear-gradient(to bottom right, #b6e48d, #fff999);
+    border-radius: 15px;
+    padding: 20px;
     margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .subscription-card h2 {
-    margin: 0;
-    font-size: 18px;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .subscription-card p {
+    font-size: 18px;
+    color: #333;
     margin: 5px 0;
-    font-size: 16px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 20px;
+    color: #333;
+}
+
+form {
+    margin-top: 20px;
 }
 
 .payment-option {
-    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px; /* Increased space between payment options */
 }
 
-label {
-    margin-left: 8px;
+.payment-option input {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.payment-option label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.payment-logo {
+    width: 32px;  /* Slightly larger logo for clearer visibility */
+    height: auto;
+    margin-right: 10px;
+    border-radius: 15px;
 }
 
 .pay-button {
     width: 100%;
-    padding: 10px;
+    padding: 15px;
     background-color: #007bff;
-    color: white;
+    color: #fff;
+    font-size: 18px;
     border: none;
-    border-radius: 5px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .pay-button:hover {

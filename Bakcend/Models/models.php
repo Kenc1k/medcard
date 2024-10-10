@@ -47,7 +47,7 @@ class Model extends Database{
         $stmt->bindParam(':viloyat_id', $viloyat_id);
         $stmt->bindParam(':tuman_id', $tuman_id);
 
-        return $stmt->execute(); // Returns true on success
+        return $stmt->execute();
     }
     public static function get_tuman($viloyat_id) {
             $sql = "SELECT * FROM " . self::$table_tuman . " WHERE viloyat_id = :viloyat_id";
