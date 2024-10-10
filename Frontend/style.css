@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0; /* Remove default margin */
+    background-color: #b5cadd; /* Light background color */
+}
+
+.container {
+    margin: 20px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+    gap: 20px; /* Space between buttons */
+    margin-top: 30px; /* Add space above buttons */
+    border-radius: 8px;
+}
+
+.btn {
+    width: 398px; /* Fixed width for buttons */
+    height: 50px; /* Adjusted height for better button appearance */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth background color transition */
+    font-size: 18px; /* Font size for better readability */
+    border-radius: 12px;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.bottom-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+}
+
+.bottom-bar a {
+    color: #000;
+    text-decoration: none;
+}
+
+.bottom-bar .edit-btn {
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}

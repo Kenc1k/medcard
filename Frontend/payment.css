@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    font-size: 20px;
+    color: #666;
+    margin-top: 20px;
+}
+
+.subscription-card {
+    background: linear-gradient(to right, #c6f8d1, #a0e7b2);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.subscription-card h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.subscription-card p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.payment-option {
+    margin: 10px 0;
+}
+
+label {
+    margin-left: 8px;
+}
+
+.pay-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.pay-button:hover {
+    background-color: #0056b3;
+}
