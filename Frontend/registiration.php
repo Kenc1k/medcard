@@ -1,12 +1,9 @@
 <?php
-// Ensure error reporting is enabled for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Include the necessary model file
 include "../Bakcend/Models/models.php";
 
-// Fetch viloyatlar (regions) from the database
 $viloyatlar = Model::get_viloyat();
 
 $selectedViloyat = isset($_POST['viloyat']) ? $_POST['viloyat'] : '';
@@ -25,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $password = $_POST['password'];
     
-    $viloyat_id = $selectedViloyat; // Assuming this is already set based on the selected option
-    $tuman_id = $selectedTuman; // This is coming from the form
+    $viloyat_id = $selectedViloyat; 
+    $tuman_id = $selectedTuman; 
 
     if (empty($viloyat_id) || empty($tuman_id)) {
         $error = "Please select both Viloyat and Tuman.";

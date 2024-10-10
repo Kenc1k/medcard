@@ -35,10 +35,7 @@ class Model extends Database{
         $sql = "INSERT INTO patients (name, surname, email, phone, password, viloyat_id, tuman_id) 
                 VALUES (:name, :surname, :email, :phone, :password, :viloyat_id, :tuman_id)";
         $stmt = self::getConnection()->prepare($sql);
-        
-        // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':surname', $surname);
         $stmt->bindParam(':email', $email);
@@ -65,11 +62,10 @@ class Model extends Database{
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Verify password
         if ($user && password_verify($password, $user['password'])) {
-            return $user; // Return user data on successful login
+            return $user; 
         }
 
-        return false; // Return false if login fails
+        return false;
     }
 }

@@ -58,11 +58,11 @@ ini_set('display_errors', 1);
             font-size: 1.2rem;
             cursor: pointer;
             transition: background-color 0.3s ease;
-            animation: fadeIn 2s 1.6s forwards; /* Button fades in after text animation */
+            animation: fadeIn 2s 1.6s forwards; 
         }
 
         .use-service-button:hover {
-            background-color: #0056b3; /* Darker blue when hovered */
+            background-color: #0056b3; 
             color: white;
         }
 
