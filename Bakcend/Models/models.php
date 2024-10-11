@@ -8,6 +8,7 @@ class Model extends Database{
     private static $table = 'patients';
     private static $table_viloyat = 'viloyat';
     private static $table_tuman = 'tuman';
+    private static $table_drugs = 'drugs';
 
     public static function get_all(){
         $sql =  "SELECT * FROM ".self::$table;
@@ -67,5 +68,19 @@ class Model extends Database{
         }
 
         return false;
+    }
+
+    public static function get_drugs(){
+        $sql = 'SELECT * FROM ' . self::$table_drugs;
+        $query = self::getConnection()->query($sql);
+        return $query->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public static function get_drug_by_id($id){
+        $sql = 'SELECT * FROM ' . self::$table_drugs . " Where id = :id";
+        $query = self::getConnection()->prepare($sql);
+        $query->bindParam(':id', $id);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 }

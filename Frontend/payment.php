@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Page</title>
-    <link rel="stylesheet" href="payment.css">
+    <link rel="stylesheet" href="assets/style/payment.css">
 </head>
 <body>
     <div class="container">
@@ -19,18 +19,18 @@
         </div>
 
         <h2>To'lov turini tanlang</h2>
-        <form action="process_payment.php" method="POST">
+        <form action="services.php" method="POST">
             <div class="payment-option">
                 <input type="radio" id="payme" name="payment_method" value="payme" required>
                 <label for="payme">
-                    <img src="Uploads/payme.jpg" alt="Payme Logo" class="payment-logo">
+                    <img src="assets/Uploads/payme.jpg" alt="Payme Logo" class="payment-logo">
                     Payme orqali to'lash
                 </label>
             </div>
             <div class="payment-option">
                 <input type="radio" id="click" name="payment_method" value="click" required>
                 <label for="click">
-                    <img src="Uploads/click.jpg" alt="Click Logo" class="payment-logo">
+                    <img src="assets/Uploads/click.jpg" alt="Click Logo" class="payment-logo">
                     Click orqali to'lash
                 </label>
             </div>

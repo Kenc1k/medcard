@@ -30,3 +30,16 @@ CREATE TABLE IF NOT EXISTS patients (
     FOREIGN KEY (tuman_id) REFERENCES tumans(id) ON DELETE CASCADE
 );
 
+CREATE TABLE drugs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    price DECIMAL(10, 2) NOT NULL,
+    manufacturer VARCHAR(255),
+    expiration_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    image VARCHAR(255)
+);
+
+

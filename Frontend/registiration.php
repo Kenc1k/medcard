@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Patient</title>
-    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="assets/style/style2.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
 </head>
 <body>
