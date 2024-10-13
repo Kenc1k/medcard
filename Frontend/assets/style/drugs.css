@@ -20,7 +20,7 @@ body {
     padding: 20px;
     background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -46,8 +46,10 @@ h1 {
 }
 
 .drug-table th {
-    background-color: #007bff;
+    background-color: #0069d9;
     color: white;
+    font-size: 16px;
+    text-transform: uppercase;
 }
 
 .drug-table tr:hover {
@@ -58,6 +60,11 @@ h1 {
     width: 80px;
     height: auto;
     border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.drug-table img:hover {
+    transform: scale(1.1);
 }
 
 button {
@@ -77,7 +84,7 @@ button:hover {
 }
 
 .drug-details {
-    display: flex; /* Center modal */
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -86,15 +93,15 @@ button:hover {
     background-color: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it's above other content */
-    opacity: 0; /* Initially hidden */
-    visibility: hidden; /* Hide visibility */
-    transition: opacity 0.3s ease; /* Smooth transition */
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .drug-details.active {
-    opacity: 1; /* Show modal */
-    visibility: visible; /* Show visibility */
+    opacity: 1;
+    visibility: visible;
 }
 
 .details-content {
@@ -102,16 +109,36 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    max-width: 400px;
+    max-width: 500px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.9);
+    }
+    to {
+        transform: scale(1);
+    }
 }
 
 .details-content h2 {
     margin-bottom: 15px;
+    font-size: 24px;
 }
 
 .details-content img {
+    margin-bottom: 15px;
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.details-content p {
     margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
 }
 
 .close-btn {
@@ -120,7 +147,8 @@ button:hover {
     color: white;
     border: none;
     border-radius: 5px;
-    text-decoration: none; /* Remove underline */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .close-btn:hover {

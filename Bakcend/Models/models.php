@@ -48,12 +48,26 @@ class Model extends Database{
         return $stmt->execute();
     }
     public static function get_tuman($viloyat_id) {
+        try {
             $sql = "SELECT * FROM " . self::$table_tuman . " WHERE viloyat_id = :viloyat_id";
             $query = self::getConnection()->prepare($sql);
-            $query->bindParam(':viloyat_id', $viloyat_id);
+            $query->bindParam(':viloyat_id', $viloyat_id, PDO::PARAM_INT);
             $query->execute();
-            return $query->fetchAll();
+            
+            // Debugging output to check for errors
+            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            if (!$result) {
+                echo "No tumans found for viloyat_id: " . htmlspecialchars($viloyat_id);
+            }
+            return $result;
+        } catch (PDOException $e) {
+            // Debugging error message
+            echo "Error: " . $e->getMessage();
+            return [];
         }
+    }
+    
+
         private static $table_patients = 'patients';
 
     public static function login($phone, $password) {
