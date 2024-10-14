@@ -63,8 +63,9 @@ if (isset($_GET['view'])) {
         </div>
         <?php endif; ?>
     </div>
-
-    <button></button>
+    <div class="back-button">
+            <a href="services.php" class="back-btn">Back to main</a> <!-- Adjust href as necessary -->
+        </div>
 
     <script>
         // Function to close the modal

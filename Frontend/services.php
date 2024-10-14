@@ -53,12 +53,12 @@
                 <p>Raqamli hujjatlar</p>
             </div>
         </div>
+        <nav class="navbar">
+            <a href="main.php" class="nav-item">Home</a>
+            <a href="services.php" class="nav-item active">Services</a>
+            <a href="#" class="nav-item">Contact</a>
+            <a href="#" class="nav-item">About</a>
+        </nav>
     </div>
-    <nav class="navbar">
-        <a href="#" class="nav-item">Home</a>
-        <a href="#" class="nav-item active">Services</a>
-        <a href="#" class="nav-item">Contact</a>
-        <a href="#" class="nav-item">About</a>
-    </nav>
 </body>
 </html>
