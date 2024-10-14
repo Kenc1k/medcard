@@ -1,14 +1,12 @@
 <?php
 include "../Bakcend/Models/models.php";
 
-// Fetch all drugs
 $drugs = Model::get_drugs();
 
-// Fetch the details of a specific drug if the 'view' parameter is set
 $drugDetails = null;
 if (isset($_GET['view'])) {
     $drugId = $_GET['view'];
-    $drugDetails = Model::get_drug_by_id($drugId); 
+    $drugDetails = Model::get_drug_by_id($drugId); // Fetch drug details by ID if 'view' is set
 }
 ?>
 
@@ -25,6 +23,7 @@ if (isset($_GET['view'])) {
         <header>
             <h1>Drug Store</h1>
         </header>
+
         <table class="drug-table">
             <thead>
                 <tr>
@@ -41,7 +40,6 @@ if (isset($_GET['view'])) {
                     <td><?= htmlspecialchars($drug->name) ?></td>
                     <td>$<?= htmlspecialchars(number_format($drug->price, 2)) ?></td>
                     <td>
-                        <!-- Link to reload the page and show the modal for the specific drug -->
                         <a href="?view=<?= $drug->id ?>" class="view-btn">View Details</a>
                         <button class="buy-btn" onclick="buyDrug(<?= $drug->id ?>)">Buy Now</button>
                     </td>
@@ -66,11 +64,19 @@ if (isset($_GET['view'])) {
         <?php endif; ?>
     </div>
 
+    <button></button>
+
     <script>
+        // Function to close the modal
         function closeModal() {
             document.getElementById('drug-details').style.display = 'none'; // Hide modal on close
             window.history.pushState({}, document.title, window.location.pathname); // Remove the '?view' parameter from the URL
         }
+
+        // Auto-show modal when a drug is clicked
+        <?php if ($drugDetails): ?>
+        document.getElementById('drug-details').style.display = 'flex'; // Show the modal if drugDetails exist
+        <?php endif; ?>
     </script>
 </body>
 </html>

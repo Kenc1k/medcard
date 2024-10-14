@@ -7,7 +7,7 @@ class Model extends Database{
 
     private static $table = 'patients';
     private static $table_viloyat = 'viloyat';
-    private static $table_tuman = 'tuman';
+    private static $table_tuman = 'tumans';
     private static $table_drugs = 'drugs';
 
     public static function get_all(){
@@ -47,24 +47,30 @@ class Model extends Database{
 
         return $stmt->execute();
     }
-    public static function get_tuman($viloyat_id) {
-        try {
-            $sql = "SELECT * FROM " . self::$table_tuman . " WHERE viloyat_id = :viloyat_id";
-            $query = self::getConnection()->prepare($sql);
-            $query->bindParam(':viloyat_id', $viloyat_id, PDO::PARAM_INT);
-            $query->execute();
+    // public static function get_tuman($viloyat_id) {
+    //     try {
+    //         $sql = "SELECT * FROM " . self::$table_tuman . " WHERE viloyat_id = :viloyat_id";
+    //         $query = self::getConnection()->prepare($sql);
+    //         $query->bindParam(':viloyat_id', $viloyat_id, PDO::PARAM_INT);
+    //         $query->execute();
             
-            // Debugging output to check for errors
-            $result = $query->fetchAll(PDO::FETCH_ASSOC);
-            if (!$result) {
-                echo "No tumans found for viloyat_id: " . htmlspecialchars($viloyat_id);
-            }
-            return $result;
-        } catch (PDOException $e) {
-            // Debugging error message
-            echo "Error: " . $e->getMessage();
-            return [];
-        }
+    //         // Debugging output to check for errors
+    //         $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    //         if (!$result) {
+    //             echo "No tumans found for viloyat_id: " . htmlspecialchars($viloyat_id);
+    //         }
+    //         return $result;
+    //     } catch (PDOException $e) {
+    //         // Debugging error message
+    //         echo "Error: " . $e->getMessage();
+    //         return [];
+    //     }
+    // }
+
+    public static function get_tuman(){
+        $sql = "SELECT * FROM " . self::$table_tuman;
+        $query = self::getConnection()->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
     
 

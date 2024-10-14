@@ -1,156 +1,83 @@
-* {
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Verdana', sans-serif;
-    background-color: #f4f7fa;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    padding: 20px;
 }
 
 .container {
-    width: 100%;
-    max-width: 1200px;
+    max-width: 900px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-h1 {
-    font-size: 36px;
-    color: #343a40;
-    margin-bottom: 10px;
-}
-
-.drug-table {
+table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
-.drug-table th, .drug-table td {
+th, td {
     padding: 15px;
-    text-align: center;
-    border-bottom: 1px solid #dee2e6;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
 }
 
-.drug-table th {
-    background-color: #0069d9;
-    color: white;
-    font-size: 16px;
-    text-transform: uppercase;
+th {
+    background-color: #f8f8f8;
 }
 
-.drug-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.drug-table img {
-    width: 80px;
-    height: auto;
-    border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-.drug-table img:hover {
-    transform: scale(1.1);
-}
-
-button {
-    padding: 10px 15px;
-    font-size: 14px;
+.view-btn, .buy-btn {
+    padding: 8px 16px;
     border: none;
-    background-color: #28a745;
-    color: white;
     cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    background-color: #5cb85c;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button:hover {
-    background-color: #218838;
-    transform: scale(1.05);
+.view-btn {
+    background-color: #007bff;
 }
 
+.buy-btn:hover {
+    background-color: #4cae4c;
+}
+
+.view-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Modal Styles */
 .drug-details {
-    display: flex;
+    display: none; /* Initially hidden */
     position: fixed;
-    top: 0;
+    z-index: 1000;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.drug-details.active {
-    opacity: 1;
-    visibility: visible;
 }
 
 .details-content {
-    background-color: white;
+    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
-    text-align: center;
+    width: 70%;
     max-width: 500px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    animation: scaleUp 0.3s ease-in-out;
-}
-
-@keyframes scaleUp {
-    from {
-        transform: scale(0.9);
-    }
-    to {
-        transform: scale(1);
-    }
-}
-
-.details-content h2 {
-    margin-bottom: 15px;
-    font-size: 24px;
-}
-
-.details-content img {
-    margin-bottom: 15px;
-    width: 150px;
-    height: auto;
-    border-radius: 8px;
-}
-
-.details-content p {
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #555;
+    text-align: center;
 }
 
 .close-btn {
-    background-color: #dc3545;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    background-color: red;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.close-btn:hover {
-    background-color: #c82333;
+    margin-top: 10px;
 }

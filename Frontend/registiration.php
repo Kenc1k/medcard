@@ -1,15 +1,12 @@
 <?php
-
 error_reporting(E_ALL); 
 ini_set('display_errors', 1);
 
 include "../Bakcend/Models/models.php";
 
 $errors = [];
-
-$viloyat = Model::get_viloyat();
-
-$tumanlar = [];
+$viloyatlar = Model::get_viloyat();
+$tumanlar = Model::get_tuman();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $name = trim($_POST['name']);
@@ -25,22 +22,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Invalid email format";
     if (empty($phone)) $errors[] = "Phone is required";
     if (empty($password)) $errors[] = "Password is required";
-    
-    if ($viloyat_id) {
-        $tumanlar = Model::get_tuman_by_viloyat($viloyat_id);
-    }
 
     if (count($errors) === 0) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        $sql = "INSERT INTO patients (name, surname, email, phone, password, viloyat_id, tuman_id)
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-
-        if ($stmt->execute([$name, $surname, $email, $phone, $hashed_password, $viloyat_id, $tuman_id])) {
-            echo "Registration successful!";
+        
+        $register = Model::register_patient($name, $surname, $email, $phone, $hashed_password, $viloyat_id, $tuman_id);
+        
+        if ($register === true) {
+            header('location: main.php');
         } else {
-            echo "Error: " . $stmt->error;
+            $errors[] = "Registration failed. Please try again.";
+            // Log the error returned by the model
+            error_log("Registration failed. Error: " . $register);
         }
     }
 }
@@ -95,14 +88,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="error">
             <ul>
                 <?php foreach ($errors as $error): ?>
-                    <li><?= $error ?></li>
+                    <li><?= htmlspecialchars($error) ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
     <?php endif; ?>
 
     <!-- Registration form -->
-    <form action="registration.php" method="POST">
+    <form action="registiration.php" method="POST">
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" required>
 
@@ -120,16 +113,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <label for="viloyat_id">Viloyat:</label>
         <select name="viloyat_id" id="viloyat_id" required>
-            <!-- Populate viloyats from the database -->
-            <?php foreach ($viloyat as $v): ?>
-                <option value="<?= $v['id'] ?>"><?= $v['name'] ?></option>
+            <?php foreach ($viloyatlar as $v): ?>
+                <option value="<?= $v['id'] ?>"><?= htmlspecialchars($v['name']) ?></option>
             <?php endforeach; ?>
         </select>
 
         <label for="tuman_id">Tuman:</label>
         <select name="tuman_id" id="tuman_id" required>
             <?php foreach ($tumanlar as $tuman): ?>
-                <option value="<?= $tuman['id'] ?>"><?= $tuman['name'] ?></option>
+                <option value="<?= $tuman['id'] ?>"><?= htmlspecialchars($tuman['name']) ?></option>
             <?php endforeach; ?>
         </select>
 
