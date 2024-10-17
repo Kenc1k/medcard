@@ -9,6 +9,7 @@ class Model extends Database{
     private static $table_viloyat = 'viloyat';
     private static $table_tuman = 'tumans';
     private static $table_drugs = 'drugs';
+    private static $table_treatments = 'treatments';
 
     public static function get_all(){
         $sql =  "SELECT * FROM ".self::$table;
@@ -47,25 +48,6 @@ class Model extends Database{
 
         return $stmt->execute();
     }
-    // public static function get_tuman($viloyat_id) {
-    //     try {
-    //         $sql = "SELECT * FROM " . self::$table_tuman . " WHERE viloyat_id = :viloyat_id";
-    //         $query = self::getConnection()->prepare($sql);
-    //         $query->bindParam(':viloyat_id', $viloyat_id, PDO::PARAM_INT);
-    //         $query->execute();
-            
-    //         // Debugging output to check for errors
-    //         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-    //         if (!$result) {
-    //             echo "No tumans found for viloyat_id: " . htmlspecialchars($viloyat_id);
-    //         }
-    //         return $result;
-    //     } catch (PDOException $e) {
-    //         // Debugging error message
-    //         echo "Error: " . $e->getMessage();
-    //         return [];
-    //     }
-    // }
 
     public static function get_tuman(){
         $sql = "SELECT * FROM " . self::$table_tuman;
@@ -93,7 +75,7 @@ class Model extends Database{
     public static function get_drugs(){
         $sql = 'SELECT * FROM ' . self::$table_drugs;
         $query = self::getConnection()->query($sql);
-        return $query->fetchAll(PDO::FETCH_OBJ);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function get_drug_by_id($id){
@@ -102,5 +84,22 @@ class Model extends Database{
         $query->bindParam(':id', $id);
         $query->execute();
         return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    public static function create_drugs(){
+        $sql = "INSERT INTO " . self::$table_drugs .  " (name,description, price,manufacturer,expiration_date,created_at,updated_at , image) VALUES (:name,:description, :price,:manufacturer,:expiration_date,:created_at,:updated_at , :image)";
+    }
+    public static function getTreatments() {
+        $pdo = self::getConnection();
+        $sql = "SELECT * FROM  treatments" ;
+        $stmt = $pdo->query($sql);  
+        return $stmt->fetchAll(PDO::FETCH_OBJ);  
+    }
+
+    public static function get_patients()
+    {
+        $sql = "SELECT * FROM patients";
+        $query = self::getConnection()->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }

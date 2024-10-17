@@ -77,7 +77,8 @@ ini_set('display_errors', 1);
 
 <div class="welcome-container">
     <h1 class="typing"> Welcome to MedCard</h1>
-    <button class="use-service-button" onclick="location.href='Frontend/main.php'">Use Service</button>
+    <button class="use-service-button" onclick="location.href='Frontend/main.php'">Use Service</button><br><br>
+    <button class="use-service-button" onclick="location.href='Admin/Admin.php'">Admin</button>
 </div>
 
 </body>

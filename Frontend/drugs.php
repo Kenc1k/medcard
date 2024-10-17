@@ -6,7 +6,7 @@ $drugs = Model::get_drugs();
 $drugDetails = null;
 if (isset($_GET['view'])) {
     $drugId = $_GET['view'];
-    $drugDetails = Model::get_drug_by_id($drugId); // Fetch drug details by ID if 'view' is set
+    $drugDetails = Model::get_drug_by_id($drugId);
 }
 ?>
 

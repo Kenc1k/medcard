@@ -17,7 +17,7 @@
         </div>
         <div class="services-grid">
             <div class="service-item">
-                <a href="service1.html">
+                <a href="treatment.php">
                     <img src="../Frontend/assets/Uploads/tashrif.jpeg" alt="Service 1">
                 </a>
                 <p>Davolanish va tashriflar</p>

@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS patients (
     password VARCHAR(255) NOT NULL,
     viloyat_id INT NOT NULL,
     tuman_id INT NOT NULL,
+    role varchar(50) DEFAULT "patient",
     FOREIGN KEY (viloyat_id) REFERENCES viloyatlar(id) ON DELETE CASCADE,
     FOREIGN KEY (tuman_id) REFERENCES tumans(id) ON DELETE CASCADE
 );
@@ -42,4 +43,13 @@ CREATE TABLE drugs (
     image VARCHAR(255)
 );
 
-
+CREATE TABLE treatments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    cost DECIMAL(10, 2) NOT NULL,
+    duration INT NOT NULL COMMENT 'Duration in minutes',
+    doctor_name VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
